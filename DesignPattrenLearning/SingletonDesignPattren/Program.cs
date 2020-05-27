@@ -11,16 +11,26 @@ namespace DesignPattrenLearning
     {
         static void Main(string[] args)
         {
-            TestSingletonClass singletonClassObj = TestSingletonClass.GetInstance;
+            Parallel.Invoke(() => PrintingMsg("Shourov Saha"), () => PrintingMsg2("Sh.Saha"));
+            //PrintingMsg("Shourov Saha");
 
-            singletonClassObj.Print("Shourov Saha");
-
-
-            TestSingletonClass singletonClassObj2 = TestSingletonClass.GetInstance;
-
-            singletonClassObj.Print("Sh.Saha");
+            //PrintingMsg2("Sh.Saha");
 
             Console.ReadKey();
+        }
+
+        private static void PrintingMsg(string name)
+        {
+            TestSingletonClass singletonClassObj2 = TestSingletonClass.GetInstance;
+
+            singletonClassObj2.Print(name);
+        }
+
+        private static void PrintingMsg2(string name)
+        {
+            TestSingletonClass singletonClassObj = TestSingletonClass.GetInstance;
+
+            singletonClassObj.Print(name);
         }
     }
 }
