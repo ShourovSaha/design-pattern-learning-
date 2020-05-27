@@ -10,6 +10,7 @@ namespace SingletonDesignPattren.Models
     {
         private static int _count = 0;
         private static TestSingletonClass _instance = null;
+        private static readonly object _lockObj = new object();
 
         TestSingletonClass()
         {
@@ -21,7 +22,15 @@ namespace SingletonDesignPattren.Models
             get
             {
                 if (_instance == null)
-                    return _instance = new TestSingletonClass();
+                {
+                    lock (_lockObj)
+                    {
+                        if (_instance == null)
+                            return _instance = new TestSingletonClass();
+                    }
+                }
+                
+                
                 return _instance;
             }
         }
