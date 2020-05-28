@@ -13,9 +13,10 @@ namespace DesignPattrenLearning
         {
             Parallel.Invoke(() => PrintingMsg("Shourov Saha"), () => PrintingMsg2("Sh.Saha"));
             //PrintingMsg("Shourov Saha");
-
             //PrintingMsg2("Sh.Saha");
 
+            var a = Console.ReadKey();
+            Console.WriteLine(a);
             Console.ReadKey();
         }
 

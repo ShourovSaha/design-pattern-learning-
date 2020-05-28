@@ -9,8 +9,9 @@ namespace SingletonDesignPattren.Models
     public class TestSingletonClass
     {
         private static int _count = 0;
-        private static TestSingletonClass _instance = null;
-        private static readonly object _lockObj = new object();
+        private static readonly TestSingletonClass _instance = new TestSingletonClass();
+        //private static readonly object _lockObj = new object();
+        //private TestSingletonClass _instance2 = new TestSingletonClass();
 
         TestSingletonClass()
         {
@@ -21,16 +22,6 @@ namespace SingletonDesignPattren.Models
         {
             get
             {
-                if (_instance == null)
-                {
-                    lock (_lockObj)
-                    {
-                        if (_instance == null)
-                            return _instance = new TestSingletonClass();
-                    }
-                }
-                
-                
                 return _instance;
             }
         }
