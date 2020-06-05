@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingletonDesignPattren", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestThreadLock", "TestThreadLock\TestThreadLock.csproj", "{F870BC14-47B3-47B2-A972-C9B23743D7D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchingString", "MatchingString\MatchingString.csproj", "{0482C1FE-24A8-4B95-B135-E2914ABFEDC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F870BC14-47B3-47B2-A972-C9B23743D7D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F870BC14-47B3-47B2-A972-C9B23743D7D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F870BC14-47B3-47B2-A972-C9B23743D7D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0482C1FE-24A8-4B95-B135-E2914ABFEDC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0482C1FE-24A8-4B95-B135-E2914ABFEDC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0482C1FE-24A8-4B95-B135-E2914ABFEDC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0482C1FE-24A8-4B95-B135-E2914ABFEDC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
