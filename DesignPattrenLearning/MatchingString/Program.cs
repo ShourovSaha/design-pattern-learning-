@@ -10,20 +10,17 @@ namespace MatchingString
     class Program
     {
         static int minPassLength = 6;
-        static int minTrendSecquencLength = 3;
-        static char[] _tempCharArray = new char[minTrendSecquencLength];
-        static int[] _tempNumArray = new int[minTrendSecquencLength];
-        static bool _minTrendSecquencLengthCheckFlag = false;
-        static char[] _cArray = null;
+        static int minTrendSecquencLength = 6;
 
         static void Main(string[] args)
         {
-            string pass = "1113#68".Trim(); //ex: abc123, 1221121, 123456, 111345, 
-            _cArray = new char[pass.Length];
+            string pass = "2222222".Trim(); //ex: abc123, 1221121, 123456, 111345, 
 
             Console.WriteLine("Do Special Charecter Exists: " + isSpecialCharecterExists(pass));
-            Console.WriteLine(isTrendScquence(pass.ToCharArray()));
-            
+
+            var result = isTrendScquence(pass.ToCharArray());
+            Console.WriteLine(result.message);
+
             Console.ReadKey();
         }
 
@@ -34,44 +31,52 @@ namespace MatchingString
         }
 
 
-        static bool isTrendScquence(char[] charArray)
+        static (bool result, string message) isTrendScquence(char[] charArray)
         {
             int sequenceLengthCount = 0;
+            int sameCharacterLengthCount = 0;
             bool trendSecquencLengthCheckFlag = false;
+            bool sameCharacterCheckFlag = false;
 
             for (int i = 1; i < charArray.Length; i++)
             {
                 //Same Number Check
                 if (charArray[i] - charArray[i - 1] == 0)
                 {
-                    continue;
-                }
+                    ++sameCharacterLengthCount;
 
+                    if (i == charArray.Length - 1 &&
+                        sameCharacterCheckFlag == true &&
+                        sameCharacterLengthCount == charArray.Length - 1)
+                        return (sameCharacterCheckFlag, "Same charecter exist");
+
+                    sameCharacterCheckFlag = true;
+                    continue;
+
+                }
                 //Secquence check 
-                if (charArray[i] - charArray[i - 1] == 1 &&
+                else if (charArray[i] - charArray[i - 1] == 1 &&
                     sequenceLengthCount <= minTrendSecquencLength)
                 {
+                    sameCharacterCheckFlag = false;
+                    sameCharacterLengthCount = 0;
                     trendSecquencLengthCheckFlag = true;
                     ++sequenceLengthCount;
 
                     if (sequenceLengthCount == minTrendSecquencLength)
-                        return trendSecquencLengthCheckFlag;
+                        return (trendSecquencLengthCheckFlag, "Trend seq exists");
                 }
                 else
                 {
+                    sameCharacterCheckFlag = false;
+                    sameCharacterLengthCount = 0;
                     trendSecquencLengthCheckFlag = false;
                     sequenceLengthCount = 0;
-
-                    if (minPassLength == minTrendSecquencLength)
-                        return trendSecquencLengthCheckFlag;
-                    else
-                        continue;
+                    continue;
                 }
-
-                
             }
 
-            return trendSecquencLengthCheckFlag;
+            return (trendSecquencLengthCheckFlag, "Success");
         }
     }
 }
