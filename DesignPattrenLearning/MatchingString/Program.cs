@@ -15,7 +15,7 @@ namespace MatchingString
 
         static void Main(string[] args)
         {
-            string pass = "111234222".Trim(); //ex: 111234222, 123111234, aabbcc, abc123, 1221121, 123456, 111345, 222222, 123654, 123654124
+            string pass = "123321".Trim(); //ex: 111234222, 123111234, aabbcc, abc123, 1221121, 123456, 111345, 222222, 123654, 123654124
 
             Console.WriteLine("Do Special Charecter Exists: " + isSpecialCharecterExists(pass));
 
@@ -44,6 +44,10 @@ namespace MatchingString
                 //Same Number Check
                 if (charArray[i] - charArray[i - 1] == 0)
                 {
+                    // Ex: 123321
+                    if (trendSecquencLengthCheckFlag == true && sequenceLengthCount == minAcceptableTrendSecquencLength)
+                        return (trendSecquencLengthCheckFlag, "Trend seq exists");
+
                     ++sameCharacterLengthCount;
                     sequenceLengthCount = 0;
 
@@ -59,8 +63,7 @@ namespace MatchingString
                     sequenceLengthCount <= minAcceptableTrendSecquencLength)
                 {
                     //Ex: 1112223, 112223, 32111321
-                    if (sameCharacterCheckFlag == true && 
-                            sameCharacterLengthCount == minAcceptableSameNumberOrCharacterLength)
+                    if (sameCharacterCheckFlag == true && sameCharacterLengthCount == minAcceptableSameNumberOrCharacterLength)
                         return (sameCharacterCheckFlag, "Same charecter exist");
 
                     sameCharacterCheckFlag = false;
@@ -68,7 +71,7 @@ namespace MatchingString
                     trendSecquencLengthCheckFlag = true;
                     ++sequenceLengthCount;
 
-                    //Ex: 123321, 321abc123
+                    //Ex: 321abc123
                     if (sequenceLengthCount > minAcceptableTrendSecquencLength)
                         return (trendSecquencLengthCheckFlag, "Trend seq exists");
                 }
@@ -82,7 +85,7 @@ namespace MatchingString
                     //Ex: 1112223
                     if ((sameCharacterLengthCount + 1) > minAcceptableSameNumberOrCharacterLength &&
                         sameCharacterCheckFlag == true)
-                        return (trendSecquencLengthCheckFlag, "Same charecter exist");
+                        return (sameCharacterCheckFlag, "Same charecter exist");
 
                     sameCharacterCheckFlag = false;
                     sameCharacterLengthCount = 0;
@@ -99,7 +102,7 @@ namespace MatchingString
             //Ex: 3214111
             if (sameCharacterLengthCount == minAcceptableSameNumberOrCharacterLength &&
                     sameCharacterCheckFlag == true)
-                return (trendSecquencLengthCheckFlag, "Same charecter exist");
+                return (sameCharacterCheckFlag, "Same charecter exist");
 
 
             return (false, "no seq exists");
